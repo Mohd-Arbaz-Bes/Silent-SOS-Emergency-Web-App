@@ -25,7 +25,7 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "YOUR_FRONTEND_URL"],
+    origin: ["https://silent-sos-emergency-web-app.vercel.app/", "YOUR_FRONTEND_URL"],
     credentials: true,
   }),
 );
