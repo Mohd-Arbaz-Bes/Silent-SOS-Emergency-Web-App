@@ -86,7 +86,7 @@ export default function SOS() {
   return (
     <div className="min-h-screen bg-linear-to-br from-red-50 via-white to-red-100 p-6">
       <div className="mx-auto max-w-5xl">
-        {/* Header */}
+        
 
         <div className="mb-10 text-center">
           <h1 className="text-5xl font-bold text-red-700">🚨 Emergency SOS</h1>
@@ -97,11 +97,11 @@ export default function SOS() {
           </p>
         </div>
 
-        {/* Main Card */}
+       
 
         <div className="rounded-3xl bg-white p-8 shadow-xl">
           <div className="flex flex-col items-center">
-            {/* SOS Button */}
+           
 
             <button
               onClick={sendSOS}
@@ -138,7 +138,6 @@ disabled:opacity-60
           </div>
         </div>
 
-        {/* Status */}
 
         {alertId && (
           <div className="mt-8 rounded-2xl bg-green-50 p-6 shadow">
@@ -164,7 +163,7 @@ disabled:opacity-60
           </div>
         )}
 
-        {/* Map */}
+       
 
         {latitude && longitude && (
           <div className="mt-8 rounded-3xl bg-white p-6 shadow-xl">

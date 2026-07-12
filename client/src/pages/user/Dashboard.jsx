@@ -6,7 +6,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Header */}
+     
 
       <div className="bg-white shadow">
         <div className="flex items-center justify-between px-8 py-6">
@@ -27,7 +27,7 @@ export default function Dashboard() {
       </div>
 
       <div className="p-8">
-        {/* Safety Status */}
+        
 
         <div className="rounded-xl bg-green-600 p-6 text-white shadow-lg">
           <h2 className="text-2xl font-bold">🟢 Safety Status: Active</h2>
@@ -35,7 +35,7 @@ export default function Dashboard() {
           <p className="mt-2">Your emergency system is ready.</p>
         </div>
 
-        {/* Action Cards */}
+        
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <Link
@@ -66,7 +66,7 @@ export default function Dashboard() {
           </Link>
         </div>
 
-        {/* Emergency Button */}
+       
 
         <div className="mt-10 rounded-xl bg-white p-8 shadow">
           <h2 className="text-2xl font-bold mb-5">Quick Emergency Action</h2>
@@ -79,7 +79,7 @@ export default function Dashboard() {
           </Link>
         </div>
 
-        {/* Safety Tips */}
+       
 
         <div className="mt-10 rounded-xl bg-white p-6 shadow">
           <h2 className="text-2xl font-bold mb-5">Safety Tips</h2>
@@ -95,7 +95,7 @@ export default function Dashboard() {
           </ul>
         </div>
 
-        {/* Logout */}
+       
 
         <div className="mt-8">
           <button
