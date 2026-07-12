@@ -25,9 +25,11 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: ["https://silent-sos-emergency-web-app.vercel.app/", "YOUR_FRONTEND_URL"],
+    origin: [
+      "https://silent-sos-emergency-web-app.vercel.app"
+    ],
     credentials: true,
-  }),
+  })
 );
 
 app.use(express.json());
@@ -41,7 +43,7 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-app.use(errorHandler);
+
 app.get("/", (req, res) => {
   res.json({
     message: "Silent SOS API Running",
@@ -53,4 +55,5 @@ app.use("/api/contacts", contactRoutes);
 app.use("/api/alerts", alertRoutes);
 app.use("/api/locations", locationRoutes);
 app.use("/api/admin", adminRoutes);
+app.use(errorHandler);
 module.exports = app;
