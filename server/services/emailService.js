@@ -7,13 +7,15 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
+transporter.verify((error) => {
+  if (error) {
+    console.log("Email Config Error:", error);
+  } else {
+    console.log("Email Server Ready");
+  }
+});
 
-const sendEmergencyEmail = async ({
-  to,
-  userName,
-  latitude,
-  longitude,
-}) => {
+const sendEmergencyEmail = async ({ to, userName, latitude, longitude }) => {
   const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
 
   await transporter.sendMail({

@@ -19,31 +19,11 @@ router.get("/users", protect, admin, getUsers);
 
 router.delete("/users/:id", protect, admin, deleteUser);
 
-router.get(
-  "/alerts",
-  protect,
-  admin,
-  getAlerts
-);
+router.get("/alerts", protect, admin, getAlerts);
 
-router.put(
-  "/alerts/:id",
-  protect,
-  admin,
-  updateAlert
-);
-router.delete(
-  "/alerts/:id",
-  protect,
-  admin,
-  deleteAlert
-);
+router.put("/alerts/:id", protect, admin, updateAlert);
+router.delete("/alerts/:id", protect, admin, deleteAlert);
 
-router.delete(
-  "/alerts",
-  protect,
-  admin,
-  deleteSelectedAlerts
-);
-
+router.delete("/alerts", protect, admin, deleteSelectedAlerts);
+router.get("/dashboard", protect, admin, dashboard);
 module.exports = router;

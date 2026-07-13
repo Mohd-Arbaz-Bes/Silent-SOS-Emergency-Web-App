@@ -20,16 +20,15 @@ const adminRoutes = require("./routes/adminRoutes");
 const errorHandler = require("./middleware/errorMiddleware");
 
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(helmet());
 
 app.use(
   cors({
-    origin: [
-      "https://silent-sos-emergency-web-app.vercel.app"
-    ],
+    origin: ["https://silent-sos-emergency-web-app.vercel.app"],
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
@@ -42,7 +41,6 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-
 
 app.get("/", (req, res) => {
   res.json({

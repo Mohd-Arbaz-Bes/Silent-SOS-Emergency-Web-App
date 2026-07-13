@@ -26,21 +26,25 @@ const createAlert = async (req, res) => {
       user: req.user.id,
     });
 
-    for (const contact of contacts) {
-      if (contact.email) {
-        await sendEmergencyEmail({
-          to: contact.email,
-          userName: user.name,
-          latitude,
-          longitude,
-        });
-      }
-    }
 
     res.status(201).json({
       success: true,
       alert,
     });
+
+
+    for (const contact of contacts) {
+      if (contact.email) {
+        sendEmergencyEmail({
+          to: contact.email,
+          userName: user.name,
+          latitude,
+          longitude,
+        }).catch((err) => {
+          console.error("Email Error:", err.message);
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
 
