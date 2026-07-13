@@ -13,13 +13,17 @@ const transporter = nodemailer.createTransport({
   greetingTimeout: 15000,
   socketTimeout: 15000,
 });
-// transporter.verify((error) => {
-//   if (error) {
-//     console.log("Email Config Error:", error);
-//   } else {
-//     console.log("Email Server Ready");
-//   }
-// });
+const transporter = nodemailer.createTransport({
+  host: "smtp-relay.brevo.com",
+  port: Number(process.env.EMAIL_PORT),
+  secure: false,
+  requireTLS: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  family: 4,
+});
 
 const sendEmergencyEmail = async ({ to, userName, latitude, longitude }) => {
   try {
