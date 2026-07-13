@@ -32,28 +32,42 @@ const sendEmergencyEmail = async ({ to, userName, latitude, longitude }) => {
     subject: "🚨 Emergency SOS Alert",
 
     html: `
-      <h2>Emergency Alert</h2>
+<div style="font-family:Arial,sans-serif;padding:20px;max-width:600px;margin:auto;border:1px solid #ddd;border-radius:10px">
 
-      <p><strong>${userName}</strong> has triggered an SOS alert.</p>
+<h2 style="color:#dc2626;">🚨 Emergency SOS Alert</h2>
 
-      <p>
-        <strong>Location:</strong><br>
-        Latitude: ${latitude}<br>
-        Longitude: ${longitude}
-      </p>
+<p>
+<b>${userName}</b> has triggered an emergency SOS alert.
+</p>
 
-      <p>
-        <a href="${mapLink}">
-          View Live Location on Google Maps
-        </a>
-      </p>
+<p>
+Please click the button below to view the live location.
+</p>
 
-      <hr>
+<p style="text-align:center;margin:30px 0;">
+<a
+href="${mapLink}"
+style="background:#dc2626;color:#fff;padding:14px 22px;text-decoration:none;border-radius:8px;font-weight:bold;">
+📍 Open Live Location
+</a>
+</p>
 
-      <small>
-        Silent SOS Emergency Web App
-      </small>
-    `,
+<p>
+If the button doesn't work, copy this link:
+</p>
+
+<p>
+${mapLink}
+</p>
+
+<hr>
+
+<p style="color:gray;font-size:13px;">
+Silent SOS Emergency Web App
+</p>
+
+</div>
+`,
   });
 };
 
