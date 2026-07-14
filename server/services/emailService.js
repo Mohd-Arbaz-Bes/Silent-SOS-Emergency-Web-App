@@ -59,8 +59,7 @@ const sendEmergencyEmail = async ({
       }
     );
 
-    console.log("✅ Email Sent Successfully");
-    console.log(response.data);
+   
   } catch (error) {
     console.error(
       "❌ Brevo Email Error:",
