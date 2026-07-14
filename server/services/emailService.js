@@ -1,47 +1,72 @@
-const nodemailer = require("nodemailer");
+const axios = require("axios");
 
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: 587,
-  secure: false,
-  requireTLS: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  connectionTimeout: 30000,
-  greetingTimeout: 30000,
-  socketTimeout: 30000,
-});
-
-const sendEmergencyEmail = async ({ to, userName, latitude, longitude }) => {
+const sendEmergencyEmail = async ({
+  to,
+  userName,
+  latitude,
+  longitude,
+}) => {
   const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
 
   try {
-    const info = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to,
-      subject: "🚨 Emergency SOS Alert",
-      html: `
-        <h2>Emergency SOS Alert</h2>
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "Silent SOS Emergency",
+          email: process.env.SENDER_EMAIL,
+        },
 
-        <p><strong>${userName}</strong> has triggered an SOS alert.</p>
+        to: [
+          {
+            email: to,
+          },
+        ],
 
-        <p>
-          <a href="${mapLink}">📍 Open Live Location</a>
-        </p>
+        subject: "🚨 Emergency SOS Alert",
 
-        <p>${mapLink}</p>
+        htmlContent: `
+          <h2>🚨 Emergency SOS Alert</h2>
 
-        <hr>
-        <small>Silent SOS Emergency Web App</small>
-      `,
-    });
+          <p><strong>${userName}</strong> has triggered an SOS alert.</p>
 
-    console.log("✅ Email Sent:", info.messageId);
-  } catch (err) {
-    console.error("❌ Full Email Error:", err);
-    throw err;
+          <p>
+            <strong>Live Location:</strong>
+          </p>
+
+          <p>
+            <a href="${mapLink}">
+              Open Google Maps
+            </a>
+          </p>
+
+          <p>${mapLink}</p>
+
+          <hr>
+
+          <p>
+            This message was sent automatically by the
+            <strong>Silent SOS Emergency Web App</strong>.
+          </p>
+        `,
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+          "content-type": "application/json",
+        },
+      }
+    );
+
+    console.log("✅ Email Sent Successfully");
+    console.log(response.data);
+  } catch (error) {
+    console.error(
+      "❌ Brevo Email Error:",
+      error.response?.data || error.message
+    );
+    throw error;
   }
 };
 
